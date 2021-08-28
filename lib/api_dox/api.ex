@@ -18,8 +18,4 @@ defmodule ApiDox.Api do
     |> cast(attrs, [:code, :name, :description, :repository_url])
     |> validate_required([:code, :name, :description, :repository_url])
   end
-
-  def test() do
-    "ok"
-  end
 end
