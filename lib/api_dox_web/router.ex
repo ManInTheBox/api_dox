@@ -17,9 +17,12 @@ defmodule ApiDoxWeb.Router do
   scope "/", ApiDoxWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
-    live "/apis", ApiLive.List
-    live "/apis/:id", ApiLive.Show
+    live "/api", ApiLive.Index, :index
+    live "/api/new", ApiLive.Index, :new
+    live "/api/:id/edit", ApiLive.Index, :edit
+
+    live "/api/:id", ApiLive.Show, :show
+    live "/api/:id/show/edit", ApiLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

@@ -1,18 +1,21 @@
 defmodule ApiDoxWeb.ApiLive.Show do
   use ApiDoxWeb, :live_view
 
-  def mount(%{"id" => id}, _session, socket) do
-    apis = [
-      %{id: 1, name: "Presence"},
-      %{id: 2, name: "PubSub"},
-      %{id: 3, name: "Notification"},
-      %{id: 4, name: "Session"},
-      %{id: 5, name: "Watchvote"}
-    ]
-    api = Enum.find(apis, %{id: 3, name: "Notification"}, fn api ->
-      api.id === String.to_integer(id)
-    end)
-    socket = assign(socket, api: api)
+  alias ApiDox.Apps
+
+  @impl true
+  def mount(_params, _session, socket) do
     {:ok, socket}
   end
+
+  @impl true
+  def handle_params(%{"id" => id}, _, socket) do
+    {:noreply,
+     socket
+     |> assign(:page_title, page_title(socket.assigns.live_action))
+     |> assign(:api, Apps.get_api!(id))}
+  end
+
+  defp page_title(:show), do: "Show Api"
+  defp page_title(:edit), do: "Edit Api"
 end
