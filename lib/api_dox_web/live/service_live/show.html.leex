@@ -1,0 +1,37 @@
+<h1>Show Service</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, ApiDoxWeb.ServiceLive.FormComponent,
+    id: @service.id,
+    title: @page_title,
+    action: @live_action,
+    service: @service,
+    return_to: Routes.service_show_path(@socket, :show, @service) %>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Code:</strong>
+    <%= @service.code %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @service.name %>
+  </li>
+
+  <li>
+    <strong>Repository url:</strong>
+    <%= @service.repository_url %>
+  </li>
+
+  <li>
+    <strong>Api spec:</strong>
+    <%= @service.api_spec %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.service_show_path(@socket, :edit, @service), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.service_index_path(@socket, :index) %></span>

@@ -8,6 +8,5 @@ defmodule ApiDox.Repo.Migrations.CreateApi do
 
       timestamps()
     end
-
   end
 end

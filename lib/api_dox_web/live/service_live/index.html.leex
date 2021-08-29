@@ -1,0 +1,41 @@
+<h1>Listing Service</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, ApiDoxWeb.ServiceLive.FormComponent,
+    id: @service.id || :new,
+    title: @page_title,
+    action: @live_action,
+    service: @service,
+    return_to: Routes.service_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Repository url</th>
+      <th>Api spec</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="service">
+    <%= for service <- @service_collection do %>
+      <tr id="service-<%= service.id %>">
+        <td><%= service.code %></td>
+        <td><%= service.name %></td>
+        <td><%= service.repository_url %></td>
+        <td><%= service.api_spec %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.service_show_path(@socket, :show, service) %></span>
+          <span><%= live_patch "Edit", to: Routes.service_index_path(@socket, :edit, service) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: service.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Service", to: Routes.service_index_path(@socket, :new) %></span>

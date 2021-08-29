@@ -1,7 +1,7 @@
-defmodule ApiDoxWeb.ApiLive.Show do
+defmodule ApiDoxWeb.ServiceLive.Show do
   use ApiDoxWeb, :live_view
 
-  alias ApiDox.Apps
+  alias ApiDox.Services
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,9 +13,9 @@ defmodule ApiDoxWeb.ApiLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:api, Apps.get_api!(id))}
+     |> assign(:service, Services.get_service!(id))}
   end
 
-  defp page_title(:show), do: "Show Api"
-  defp page_title(:edit), do: "Edit Api"
+  defp page_title(:show), do: "Show Service"
+  defp page_title(:edit), do: "Edit Service"
 end
