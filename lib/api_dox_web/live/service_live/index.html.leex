@@ -15,7 +15,6 @@
       <th>Code</th>
       <th>Name</th>
       <th>Repository url</th>
-      <th>Api spec</th>
 
       <th></th>
     </tr>
@@ -25,8 +24,7 @@
       <tr id="service-<%= service.id %>">
         <td><%= service.code %></td>
         <td><%= service.name %></td>
-        <td><%= service.repository_url %></td>
-        <td><%= service.api_spec %></td>
+        <td><%= link(service.repository_url, to: service.repository_url, target: "_blank") %></td>
 
         <td>
           <span><%= live_redirect "Show", to: Routes.service_show_path(@socket, :show, service) %></span>

@@ -6,7 +6,7 @@ defmodule ApiDox.Repo.Migrations.CreateService do
       add :code, :string, null: false
       add :name, :string, null: false
       add :repository_url, :string, null: false
-      add :api_spec, :string
+      add :api_spec, :text
 
       timestamps()
     end

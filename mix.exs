@@ -47,7 +47,8 @@ defmodule ApiDox.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:open_api_spex, "~> 3.10"}
+      {:open_api_spex, "~> 3.10"},
+      {:yaml_elixir, "~> 2.8"}
     ]
   end
 

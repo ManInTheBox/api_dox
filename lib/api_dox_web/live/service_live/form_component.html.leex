@@ -19,7 +19,7 @@
   <%= error_tag f, :repository_url %>
 
   <%= label f, :api_spec %>
-  <%= text_input f, :api_spec %>
+  <%= textarea f, :api_spec %>
   <%= error_tag f, :api_spec %>
 
   <%= submit "Save", phx_disable_with: "Saving..." %>

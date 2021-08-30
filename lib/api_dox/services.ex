@@ -35,7 +35,14 @@ defmodule ApiDox.Services do
       ** (Ecto.NoResultsError)
 
   """
-  def get_service!(id), do: Repo.get!(Service, id)
+  def get_service!(id) do
+    service = Repo.get!(Service, id)
+    put_in(service.api_spec,
+      service.api_spec
+        |> YamlElixir.read_from_string!()
+        |> OpenApiSpex.OpenApi.Decode.decode()
+    )
+  end
 
   @doc """
   Creates a service.
