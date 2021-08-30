@@ -36,12 +36,12 @@ defmodule ApiDox.Services do
 
   """
   def get_service!(id) do
-    service = Repo.get!(Service, id)
-    put_in(service.api_spec,
-      service.api_spec
-        |> YamlElixir.read_from_string!()
-        |> OpenApiSpex.OpenApi.Decode.decode()
-    )
+    Repo.get!(Service, id)
+    |> Map.update!(:api_spec, fn spec ->
+      spec
+      |> YamlElixir.read_from_string!()
+      |> OpenApiSpex.OpenApi.Decode.decode()
+    end)
   end
 
   @doc """
