@@ -37,11 +37,12 @@ defmodule ApiDox.Services do
   """
   def get_service!(id) do
     Repo.get!(Service, id)
-    |> Map.update!(:api_spec, fn spec ->
-      spec
-      |> YamlElixir.read_from_string!()
-      |> OpenApiSpex.OpenApi.Decode.decode()
-    end)
+    |> parse_open_api_spec()
+  end
+
+  def get_by_code!(code) do
+    Repo.get_by!(Service, code: code)
+    |> parse_open_api_spec()
   end
 
   @doc """
@@ -107,5 +108,14 @@ defmodule ApiDox.Services do
   """
   def change_service(%Service{} = service, attrs \\ %{}) do
     Service.changeset(service, attrs)
+  end
+
+  defp parse_open_api_spec(service) do
+    service
+    # |> Map.update!(:api_spec, fn spec ->
+    #   spec
+    #   |> YamlElixir.read_from_string!()
+    #   |> OpenApiSpex.OpenApi.Decode.decode()
+    # end)
   end
 end

@@ -19,10 +19,10 @@ defmodule ApiDoxWeb.Router do
 
     live "/service", ServiceLive.Index, :index
     live "/service/new", ServiceLive.Index, :new
-    live "/service/:id/edit", ServiceLive.Index, :edit
+    live "/service/:code/edit", ServiceLive.Index, :edit
 
-    live "/service/:id", ServiceLive.Show, :show
-    live "/service/:id/show/edit", ServiceLive.Show, :edit
+    live "/service/:code", ServiceLive.Show, :show
+    live "/service/:code/show/edit", ServiceLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

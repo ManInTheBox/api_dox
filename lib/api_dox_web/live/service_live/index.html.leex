@@ -27,8 +27,8 @@
         <td><%= link(service.repository_url, to: service.repository_url, target: "_blank") %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.service_show_path(@socket, :show, service) %></span>
-          <span><%= live_patch "Edit", to: Routes.service_index_path(@socket, :edit, service) %></span>
+          <span><%= live_redirect "Show", to: Routes.service_show_path(@socket, :show, service.code) %></span>
+          <span><%= live_patch "Edit", to: Routes.service_index_path(@socket, :edit, service.code) %></span>
           <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: service.id, data: [confirm: "Are you sure?"] %></span>
         </td>
       </tr>
