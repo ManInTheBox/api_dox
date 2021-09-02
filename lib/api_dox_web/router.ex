@@ -17,6 +17,7 @@ defmodule ApiDoxWeb.Router do
   scope "/", ApiDoxWeb do
     pipe_through :browser
 
+    live "/", ServiceLive.Index, :index
     live "/service", ServiceLive.Index, :index
     live "/service/new", ServiceLive.Index, :new
     live "/service/:code/edit", ServiceLive.Index, :edit
