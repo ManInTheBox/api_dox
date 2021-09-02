@@ -17,6 +17,12 @@ config :api_dox, ApiDox.Repo,
 # with webpack to recompile .js and .css sources.
 config :api_dox, ApiDoxWeb.Endpoint,
   http: [port: System.get_env("PORT") || 4000],
+  https: [
+    port: System.get_env("PORT_HTTPS") || 4001,
+    cipher_suite: :strong,
+    certfile: "priv/cert/selfsigned.pem",
+    keyfile: "priv/cert/selfsigned_key.pem"
+  ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
